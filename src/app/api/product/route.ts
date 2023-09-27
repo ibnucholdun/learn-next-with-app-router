@@ -5,16 +5,22 @@ const data = [
     id: 1,
     name: "Sepatu Baru",
     price: 1000,
+    image:
+      "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/a3734282-d3ff-4df6-96bd-bbe1227ef63c/cortez-shoes-0VH7qz.png",
   },
   {
     id: 2,
     name: "Sepatu Lama",
     price: 500,
+    image:
+      "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/a3734282-d3ff-4df6-96bd-bbe1227ef63c/cortez-shoes-0VH7qz.png",
   },
   {
     id: 3,
     name: "Sepatu Pria",
     price: 10000,
+    image:
+      "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/a3734282-d3ff-4df6-96bd-bbe1227ef63c/cortez-shoes-0VH7qz.png",
   },
 ];
 

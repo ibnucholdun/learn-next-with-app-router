@@ -2,7 +2,9 @@
 
 import React, { useState } from "react";
 
-type Props = {};
+type Props = {
+  children: React.ReactNode;
+};
 
 const Template = (props: Props) => {
   const { children } = props;
