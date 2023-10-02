@@ -12,7 +12,8 @@ const getData = async () => {
     // cache ini bisa berguna untuk mejaga performance website karena ketika membua websie tidak memfetch ulang melainkan mengambil datanya dari cache
     cache: "force-cache",
     next: {
-      revalidate: 60, //waktu yang digunakan untuk mengupdate data cache untuk satu hari waktunya (3600*24)
+      tags: ["products"], //tag ini untuk menambahkan cache secara manual melalui enpoint api
+      // revalidate: 60, //waktu yang digunakan untuk mengupdate data cache untuk satu hari waktunya (3600*24)
     },
   });
 

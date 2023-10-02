@@ -22,6 +22,13 @@ const data = [
     image:
       "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/a3734282-d3ff-4df6-96bd-bbe1227ef63c/cortez-shoes-0VH7qz.png",
   },
+  {
+    id: 4,
+    name: "Sepatu Jelek",
+    price: 10000,
+    image:
+      "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/a3734282-d3ff-4df6-96bd-bbe1227ef63c/cortez-shoes-0VH7qz.png",
+  },
 ];
 
 export const GET = async (request: NextRequest) => {
