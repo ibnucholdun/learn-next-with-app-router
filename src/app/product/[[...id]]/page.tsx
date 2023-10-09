@@ -10,7 +10,7 @@ const getData = async () => {
   // const res = await fetch("https://fakestoreapi.com/products", {
   //   cache: "no-store",
   // });
-  const res = await fetch("http://localhost:3000/api/product", {
+  const res = await fetch("http://localhost:3000/api/productdfs", {
     // cache ini bisa berguna untuk mejaga performance website karena ketika membua websie tidak memfetch ulang melainkan mengambil datanya dari cache
     cache: "no-store",
     next: {
