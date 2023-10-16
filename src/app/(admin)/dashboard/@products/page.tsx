@@ -26,7 +26,7 @@ const AdminProductPage = (props: Props) => {
   };
 
   return (
-    <>
+    <div className="w-3/6 h-96 bg-gray-300 rounded-[12px] flex justify-center items-center">
       <h1>{status}</h1>
       <button
         className="bg-blue-500 py-2 px-4 rounded m-5 text-white"
@@ -34,7 +34,7 @@ const AdminProductPage = (props: Props) => {
       >
         Revalidate
       </button>
-    </>
+    </div>
   );
 };
 
