@@ -1,23 +1,32 @@
 "use client";
 
+import { signIn } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 type Props = {};
 
 const LoginPage = (props: Props) => {
-  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+  const { push } = useRouter();
+  const handleLogin = async (e: any) => {
     e.preventDefault();
-    fetch("/api/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: e.currentTarget.email.value,
-        password: e.currentTarget.password.value,
-      }),
-    });
+    try {
+      const res = await signIn("credentials", {
+        redirect: false,
+        email: e.target.email.value,
+        password: e.target.password.value,
+        callbackUrl: "/dashboard",
+      });
+
+      if (!res?.error) {
+        push("/dashboard");
+      } else {
+        console.log(res.error);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -31,8 +40,7 @@ const LoginPage = (props: Props) => {
             <div>
               <label
                 htmlFor="email"
-                className="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300"
-              >
+                className="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">
                 Your email
               </label>
               <input
@@ -47,8 +55,7 @@ const LoginPage = (props: Props) => {
             <div>
               <label
                 htmlFor="password"
-                className="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300"
-              >
+                className="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">
                 Your password
               </label>
               <input
@@ -63,16 +70,14 @@ const LoginPage = (props: Props) => {
 
             <button
               type="submit"
-              className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
+              className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
               Sign In
             </button>
             <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
               Have not account?{" "}
               <Link
                 href="/register"
-                className="text-blue-700 hover:underline dark:text-blue-500"
-              >
+                className="text-blue-700 hover:underline dark:text-blue-500">
                 Sign up here
               </Link>
             </div>
