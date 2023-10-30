@@ -8,7 +8,7 @@ type Props = {};
 const Navbar = (props: Props) => {
   const pathname = usePathname();
   const router = useRouter();
-  const { status }: { status: string } = useSession();
+  const { data: session, status }: { data: any; status: string } = useSession();
 
   return (
     <nav className="flex bg-gray-800 py-2 px-5 justify-between items-center">
@@ -44,11 +44,14 @@ const Navbar = (props: Props) => {
 
       <div>
         {status === "authenticated" ? (
-          <button
-            className="text-white bg-blue-700 px-5 py-2 rounded-md cursor-pointer"
-            onClick={() => signOut()}>
-            Logout
-          </button>
+          <div className="flex justify-center items-center">
+            <p className="text-white mx-3">{session?.user.fullname}</p>
+            <button
+              className="text-white bg-blue-700 px-5 py-2 rounded-md cursor-pointer"
+              onClick={() => signOut()}>
+              Logout
+            </button>
+          </div>
         ) : (
           <button
             className="text-white bg-blue-700 px-5 py-2 rounded-md cursor-pointer"

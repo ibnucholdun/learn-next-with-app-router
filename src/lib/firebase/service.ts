@@ -63,4 +63,22 @@ const register = async (data: {
   }
 };
 
-export { retriveData, retriveDataById, register };
+const login = async (data: { email: string }) => {
+  const q = query(
+    collection(firestore, "users"),
+    where("email", "==", data.email)
+  );
+  const snapshot = await getDocs(q);
+  const user = snapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
+
+  if (user) {
+    return user[0];
+  } else {
+    return null;
+  }
+};
+
+export { retriveData, retriveDataById, register, login };
