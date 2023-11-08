@@ -9,22 +9,26 @@ const LoginPage = ({ searchParams }: any) => {
   const { push } = useRouter();
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  const callbackUrl = searchParams?.callbackUrl || "/";
+
   const handleLogin = async (e: any) => {
     e.preventDefault();
     setError("");
     setIsLoading(true);
+
     try {
       const res = await signIn("credentials", {
         redirect: false,
         email: e.target.email.value,
         password: e.target.password.value,
-        callbackUrl: searchParams?.callbackUrl || "/",
+        callbackUrl,
       });
 
       if (!res?.error) {
         e.target.reset();
         setIsLoading(false);
-        push(searchParams?.callbackUrl || "/");
+        push(callbackUrl);
       } else {
         setIsLoading(false);
         if (res.status === 401) {
@@ -83,6 +87,15 @@ const LoginPage = ({ searchParams }: any) => {
               type="submit"
               className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
               {isLoading ? "Loading..." : "Sign in"}
+            </button>
+
+            <hr />
+            <button
+              disabled={isLoading}
+              type="button"
+              onClick={() => signIn("google", { callbackUrl, redirect: false })}
+              className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              Login With Google
             </button>
             <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
               Have not account?{" "}
