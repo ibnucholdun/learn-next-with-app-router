@@ -5,9 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-type Props = {};
-
-const LoginPage = (props: Props) => {
+const LoginPage = ({ searchParams }: any) => {
   const { push } = useRouter();
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -20,13 +18,13 @@ const LoginPage = (props: Props) => {
         redirect: false,
         email: e.target.email.value,
         password: e.target.password.value,
-        callbackUrl: "/dashboard",
+        callbackUrl: searchParams?.callbackUrl || "/",
       });
 
       if (!res?.error) {
         e.target.reset();
         setIsLoading(false);
-        push("/dashboard");
+        push(searchParams?.callbackUrl || "/");
       } else {
         setIsLoading(false);
         if (res.status === 401) {
