@@ -1,6 +1,9 @@
-import Modal from "@/components/core/Modal";
 import getData from "@/services/products";
+import dynamic from "next/dynamic";
+import Image from "next/image";
 import React from "react";
+
+const Modal = dynamic(() => import("@/components/core/Modal"));
 
 type Props = {
   params: any;
@@ -13,10 +16,12 @@ const DetailProductPage = async (props: Props) => {
   );
   return (
     <Modal>
-      <img
+      <Image
         src={data.image}
         alt=""
         className="w-full object-cover aspect-square col-span-2"
+        width={300}
+        height={300}
       />
       <div className="bg-white p-4 px-6">
         <h3>{data.name}</h3>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { signIn, signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 
 type Props = {};
 
@@ -45,6 +46,13 @@ const Navbar = (props: Props) => {
       <div>
         {status === "authenticated" ? (
           <div className="flex justify-center items-center">
+            <Image
+              src="/images/profile.png"
+              alt="profile"
+              width={50}
+              height={50}
+              className="w-10 h-10 rounded-full"
+            />
             <p className="text-white mx-3">{session?.user.fullname}</p>
             <button
               className="text-white bg-blue-700 px-5 py-2 rounded-md cursor-pointer"
